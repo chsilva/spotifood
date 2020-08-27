@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Layout from 'components/layout'
 import Home from 'pages/home'
 import Login from 'pages/login'
+import isAuthenticated from 'settings/auth'
 
-const isAuthenticated = () => false
 const PublicRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
@@ -19,7 +19,12 @@ const PublicRoute = ({ component: Component, ...rest }) => {
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  return <Route {...rest} render={() => (isAuthenticated() ? <Component /> : <Redirect to="/login" />)} />
+  return (
+    <Route
+      {...rest}
+      render={() => (isAuthenticated() ? <Component /> : <Redirect to="/login?error=session_expired" />)}
+    />
+  )
 }
 
 export default function Routes() {
