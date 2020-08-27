@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+import { useI18n } from 'react-simple-i18n'
 
 import { getHashParams } from 'utils/functions'
 import { LS_ACCESS_TOKEN_KEY, LS_TOKEN_TYPE_KEY, LS_EXPIRES_IN_KEY } from 'settings/constants'
 import * as S from './styles'
 
 function LoginController({ history }) {
+  const { t } = useI18n()
   useEffect(() => {
     const { access_token, token_type, expires_in } = getHashParams()
     if (access_token && token_type && expires_in) {
@@ -24,7 +26,7 @@ function LoginController({ history }) {
   return (
     <S.Login>
       <h1>LOGIN</h1>
-      <button onClick={onClickLogin}>LOGIN WITH SPOTIFY</button>
+      <button onClick={onClickLogin}>{t('login.button')}</button>
     </S.Login>
   )
 }
