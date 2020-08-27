@@ -11,10 +11,14 @@ function LoginController({ history }) {
   useEffect(() => {
     const { access_token, token_type, expires_in } = getHashParams()
     if (access_token && token_type && expires_in) {
-      localStorage.setItem(LS_ACCESS_TOKEN_KEY, access_token)
-      localStorage.setItem(LS_TOKEN_TYPE_KEY, token_type)
-      localStorage.setItem(LS_EXPIRES_IN_KEY, Math.round(Date.now() / 1000) + parseInt(expires_in))
-      history.push('/')
+      try {
+        localStorage.setItem(LS_ACCESS_TOKEN_KEY, access_token)
+        localStorage.setItem(LS_TOKEN_TYPE_KEY, token_type)
+        localStorage.setItem(LS_EXPIRES_IN_KEY, Math.round(Date.now() / 1000) + parseInt(expires_in))
+      } catch (e) {
+      } finally {
+        history.push('/')
+      }
     }
   }, [])
 

@@ -1,7 +1,9 @@
 import React from 'react'
 
-function Home() {
-  return <h1>Home</h1>
+import Home from 'controllers/home'
+
+function HomePage() {
+  return <Home />
 }
 
-export default Home
+export default HomePage
