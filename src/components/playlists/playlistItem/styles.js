@@ -24,7 +24,7 @@ export const PlaylistItemImage = styled.img`
   transition: transform 0.175s ease, filter 0.175s ease;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
     filter: brightness(1);
   }
 

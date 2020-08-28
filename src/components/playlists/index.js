@@ -5,7 +5,7 @@ import PlaylistItem from 'components/playlists/playlistItem'
 import Spinner from 'components/spinner'
 import * as S from './styles'
 
-function Playlists({ loading, message, playlists }) {
+function Playlists({ loading, message, playlists, search }) {
   const hasPlaylists = Object.keys(playlists).length > 0
 
   if (!hasPlaylists || loading) {
@@ -20,9 +20,17 @@ function Playlists({ loading, message, playlists }) {
     <>
       <S.PlaylistsMessage>{message}</S.PlaylistsMessage>
       <S.Playlists>
-        {playlists.items.map((item) => (
-          <PlaylistItem item={item} key={item.id} />
-        ))}
+        {playlists.items.map((item) => {
+          if (search) {
+            return (
+              (item.name.toLowerCase().indexOf(search) >= 0 || item.description.toLowerCase().indexOf(search) >= 0) && (
+                <PlaylistItem item={item} key={item.id} />
+              )
+            )
+          }
+
+          return <PlaylistItem item={item} key={item.id} />
+        })}
       </S.Playlists>
     </>
   )

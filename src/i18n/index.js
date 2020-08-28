@@ -1,10 +1,20 @@
 export default {
   en_US: {
     login: { button: 'LOGIN WITH SPOTIFY' },
-    home: {},
+    home: {
+      title: 'PLAYLISTS',
+      filter: {
+        title: 'FILTERS',
+      },
+    },
   },
   pt_BR: {
     login: { button: 'LOGIN COM SPOTIFY' },
-    home: {},
+    home: {
+      title: 'PLAYLISTS',
+      filter: {
+        title: 'FILTROS',
+      },
+    },
   },
 }

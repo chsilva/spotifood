@@ -37,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: ${(props) => props.theme.primary};
+    border-radius: 16px;
   }
   
   /* Handle on hover */

@@ -5,10 +5,11 @@ import { Creators as PlaylistCreators } from 'state/ducks/playlist'
 import { SAGAS_PREFIX } from 'settings/constants'
 
 import PlaylistService from 'services/playlist'
+import FilterService from 'services/filter'
 
 export const { Types, Creators } = createActions(
   {
-    getFeaturedPlaylists: [''],
+    getFeaturedPlaylists: ['payload'],
   },
   { prefix: SAGAS_PREFIX }
 )
@@ -16,7 +17,9 @@ export const { Types, Creators } = createActions(
 function* getFeaturedPlaylists() {
   try {
     yield put(PlaylistCreators.setLoading(true))
+    const filters = yield call(FilterService.getFilters)
     const featuredPlaylists = yield call(PlaylistService.getFeaturedPlaylists)
+    yield put(PlaylistCreators.setFilters(filters))
     yield put(PlaylistCreators.setFeaturedPlaylists(featuredPlaylists))
   } catch (e) {
   } finally {
